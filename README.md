@@ -21,7 +21,7 @@ By working through this project, you'll learn how to:
   - Create serverless backend processes with Azure Functions.
   - Handle tasks like image processing or data manipulation without managing servers.
 
-- **Set Up Infrastructure as Code (IaC) Pipelines**
+- **Set Up Infrastructure as Code (IaC) Pipelines** [link](./iac.md)
   - Automate the deployment of Azure resources using tools like Azure Resource Manager (ARM) templates or Terraform.
   - Embrace DevOps practices by treating infrastructure configurations as code.
 
