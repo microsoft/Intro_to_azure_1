@@ -9,11 +9,11 @@ This project is your hands-on guide to building a full-fledged photo library usi
 ### What's Inside?
 By working through this project, you'll learn how to:
 
-- **Secure Your GitHub Repository and Automate Deployments to Azure**  [link](https://github.com/microsoft/Intro_to_azure_1/blob/main/SecureTheRepo.md)
+- **Secure Your GitHub Repository and Automate Deployments to Azure**  [link](./SecureTheRepo.md)
   - Set up continuous integration and deployment (CI/CD) so updates are automatically deployed whenever you push changes.
   - Implement security best practices to protect your code and deployment pipeline.
 
-- **Deploy an Azure Web App**
+- **Deploy an Azure Web App** [link](./DeployWebApp.md)
   - Host your photo library frontend using Azure App Service.
   - Learn how to scale and manage your web application in the cloud.
 
