@@ -2,274 +2,298 @@
 
 ## Introduction
 
-Azure Functions is a **serverless computing** service provided by Microsoft Azure that allows you to run code without the need to manage servers explicitly. This means you can focus on building the functionality you need to process data, integrate systems, and build simple APIs and microservices.
+Welcome! This guide will help you deploy Azure Functions to create serverless backend processes using Microsoft Azure. Azure Functions allow you to handle tasks like image processing or data manipulation without managing servers. This is ideal for building scalable and efficient applications.
 
-In this guide, you'll learn how to:
+In this tutorial, we will:
 
-- **Create serverless backend processes with Azure Functions**
-- **Handle tasks like image processing or data manipulation without managing servers**
+- **Deploy Azure Functions using existing source code written in .NET 8**
+- **Understand how to work with Azure Functions**
 
-This tutorial is intended for engineers who are new to Azure, as well as those with varying levels of experience.
+This guide is intended for engineers who are new to Azure, but it caters to a broad range of experience levels.
 
 ## Prerequisites
 
-Before you begin, make sure you have the following:
+Before you begin, ensure you have the following:
 
-- **Azure Account**: If you don't have one, you can sign up for a free account [here](https://azure.microsoft.com/free/).
+- **Azure Account**: If you don't have one, you can create a free account [here](https://azure.microsoft.com/free/).
 - **Azure CLI**: Install the Azure Command-Line Interface from [here](https://learn.microsoft.com/cli/azure/install-azure-cli) to manage Azure resources from your terminal.
-- **Node.js**: Install Node.js from [here](https://nodejs.org/) if you plan to write your functions in JavaScript/TypeScript.
-- **Visual Studio Code (VS Code)**: Download and install VS Code from [here](https://code.visualstudio.com/).
-  - **Azure Functions Extension**: Install the Azure Functions extension for VS Code from the Marketplace [here](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions).
+- **.NET 8 SDK**: Install .NET 8 from [here](https://dotnet.microsoft.com/download/dotnet/8.0).
+- **Visual Studio Code (VS Code)**: Download from [here](https://code.visualstudio.com/).
+  - **Azure Functions Extension**: Install from the VS Code Marketplace [here](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions).
+  - **C# Extension**: Install from [here](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) for C# support.
 
 ## Understanding Azure Functions
 
 ### What Are Azure Functions?
 
-Azure Functions is a **serverless compute** service that enables you to run code on-demand without provisioning or managing infrastructure. Functions are triggered by events, such as HTTP requests, messages on a queue, or timers.
+Azure Functions is a **serverless compute** service that enables you to run event-triggered code without explicitly provisioning or managing infrastructure. This allows you to focus on writing code to solve business problems without worrying about server maintenance.
 
-**Key Concepts:**
+**Key Benefits:**
 
-- **Serverless Computing**: Infrastructure is abstracted away, so you can focus on code, and Azure handles running and scaling.
-- **Event-Driven**: Functions are invoked by triggers, responding to events in real-time.
-- **Pay-per-Use**: You're billed only for the time your code runs, making it cost-effective.
+- **Event-Driven**: Functions are triggered by events such as HTTP requests, timer schedules, or messages from other Azure services.
+- **Scalability**: Automatically scales to meet demand.
+- **Cost-Effective**: Pay only for the time your code runs.
 
 ### Why Use Azure Functions?
 
-- **Simplify Development**: Write less code and maintain less infrastructure.
-- **Scalable**: Automatically scales to meet demand.
-- **Cost-Effective**: Only pay for compute resources when your functions are running.
-- **Versatile**: Support for multiple programming languages and integration with other Azure services.
+- **Simplify Backend Logic**: Ideal for tasks like image processing, data manipulation, and responding to database changes.
+- **Integration**: Easily integrate with other Azure services and external platforms.
+- **Efficient Development**: Focus on writing code rather than managing infrastructure.
 
-## Step-by-Step Guide
+## Setting Up Your Development Environment
 
-### 1. Log in to Azure
+### Install .NET 8 SDK
 
-Open your terminal and log in to your Azure account:
+Download and install the .NET 8 SDK:
 
-```
-az login
-```
+- [Download .NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
-A browser window will open for you to authenticate.
-
-### 2. Create a Resource Group
-
-A resource group is a container that holds related Azure resources.
+Verify the installation by running:
 
 ```
-az group create --name MyFunctionResourceGroup --location eastus
+dotnet --version
 ```
 
-- Replace `MyFunctionResourceGroup` with your desired resource group name.
-- Choose a location close to you or your users (e.g., `eastus`, `westeurope`).
-
-### 3. Create a Storage Account
-
-Azure Functions requires a storage account for operation.
+You should see output similar to:
 
 ```
-az storage account create --name mystorageaccountxyz --location eastus --resource-group MyFunctionResourceGroup --sku Standard_LRS
+8.0.100
 ```
 
-- Storage account names must be unique across Azure and use only lowercase letters and numbers.
-- Replace `mystorageaccountxyz` with a unique name.
+### Install Azure Functions Core Tools
 
-### 4. Create a Function App
+Azure Functions Core Tools allow you to develop and test your functions locally.
 
-A Function App is a container for your Azure Functions.
-
-```
-az functionapp create --resource-group MyFunctionResourceGroup --consumption-plan-location eastus --runtime node --functions-version 4 --name MyFunctionApp --storage-account mystorageaccountxyz
-```
-
-- **--runtime**: Choose the language runtime (`node`, `python`, `dotnet`, `java`, etc.).
-- **--functions-version**: The version of the Azure Functions runtime (`4` is the latest as of October 2023).
-- **--name**: Must be unique across Azure.
-
-### 5. Set Up Your Development Environment
-
-#### Install Azure Functions Core Tools
-
-Azure Functions Core Tools lets you develop and test functions locally.
+Install via npm:
 
 ```
 npm install -g azure-functions-core-tools@4 --unsafe-perm true
 ```
 
-Verify the installation:
+Alternatively, download the installer from [here](https://github.com/Azure/azure-functions-core-tools).
+
+### Install Visual Studio Code Extensions
+
+In VS Code, install the following extensions:
+
+- **Azure Functions Extension**: Simplifies the development and deployment of Azure Functions.
+- **C# Extension**: Provides C# editing support.
+
+## Accessing the Source Code
+
+The source code for the Azure Functions is located in the repository under:
+
+- **Function 1**: `C_Sharp/dotnet8/API1`
+- **Function 2**: `C_Sharp/dotnet8/API2`
+
+Clone the repository to your local machine.
+
+#### Cloning the Repository
 
 ```
-func --version
+git clone https://github.com/your-username/your-repo.git
 ```
 
-#### Initialize a Local Function Project
+Replace `your-username` and `your-repo` with your GitHub username and repository name.
 
-Create a new folder for your project and navigate into it:
-
-```
-mkdir MyFunctionProject
-cd MyFunctionProject
-```
-
-Initialize a new Functions project:
+Navigate to the project directory:
 
 ```
-func init . --worker-runtime node
+cd your-repo/C_Sharp/dotnet8
 ```
 
-- **--worker-runtime**: The language runtime you chose earlier.
+## Creating an Azure Function App
 
-### 6. Create a Function
+An Azure Function App is a container for your functions, settings, and resources.
 
-Create a new function within your project:
+### Step 1: Log in to Azure
 
-```
-func new
-```
-
-You'll be prompted to select:
-
-- **Function template**: Choose `HTTP trigger`.
-- **Function name**: Enter `ImageProcessorFunction` or `DataManipulatorFunction`.
-- **Authorization level**: Select `Anonymous` for this example (other options are `Function`, `Admin`).
-
-### 7. Implement Your Function Logic
-
-Open your project in VS Code:
+Log in via the Azure CLI:
 
 ```
-code .
+az login
 ```
 
-Navigate to the `index.js` file inside your function folder. Implement your code.
+A browser window will open for authentication.
 
-#### Example: Image Processing Function
+### Step 2: Create a Resource Group
 
-```
-module.exports = async function (context, req) {
-    const imageUrl = req.query.imageUrl || (req.body && req.body.imageUrl);
-    if (!imageUrl) {
-        context.res = {
-            status: 400,
-            body: "Please pass an imageUrl in the query string or in the request body"
-        };
-        return;
-    }
-
-    try {
-        const axios = require('axios');
-        const Jimp = require('jimp');
-
-        const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-        const image = await Jimp.read(response.data);
-        image.greyscale(); // Apply a greyscale filter
-        const buffer = await image.getBufferAsync(Jimp.MIME_JPEG);
-
-        context.res = {
-            status: 200,
-            body: buffer,
-            headers: {
-                'Content-Type': 'image/jpeg'
-            }
-        };
-    } catch (error) {
-        context.log.error("Error processing image:", error);
-        context.res = {
-            status: 500,
-            body: "Error processing image"
-        };
-    }
-};
-```
-
-**Note:** Install the required packages:
+A resource group is a container that holds related resources.
 
 ```
-npm install axios jimp
+az group create --name MyFunctionAppResourceGroup --location eastus
 ```
 
-#### Example: Data Manipulation Function
+- Replace `MyFunctionAppResourceGroup` with your desired name.
+- Choose a location close to your users (e.g., `eastus`, `westeurope`).
 
-Similarly, you can implement data manipulation logic based on your requirements.
+### Step 3: Create a Storage Account
 
-### 8. Test Your Function Locally
-
-Start the function runtime:
-
-```
-func start
-```
-
-You'll see output indicating that your function is running:
+Azure Functions require a Storage Account to store runtime and trigger information.
 
 ```
-Functions:
-
-        ImageProcessorFunction: [GET,POST] http://localhost:7071/api/ImageProcessorFunction
+az storage account create --name mystorageaccountxyz --location eastus --resource-group MyFunctionAppResourceGroup --sku Standard_LRS
 ```
 
-Test your function using a web browser or a tool like `curl` or `Postman`:
+- Storage account names must be unique across Azure and use only lowercase letters and numbers.
+- Replace `mystorageaccountxyz` with a unique name.
+
+### Step 4: Create the Function App
+
+This code already exists in the repo, however here are the steps for creating them from scratch.  Create the Function App using the `dotnet-isolated` runtime (supports .NET 8):
 
 ```
-curl "http://localhost:7071/api/ImageProcessorFunction?imageUrl=https://example.com/image.jpg" --output processed.jpg
+az functionapp create --resource-group MyFunctionAppResourceGroup --consumption-plan-location eastus --runtime dotnet-isolated --functions-version 4 --name MyFunctionApp --storage-account mystorageaccountxyz
 ```
 
-### 9. Deploy Your Function to Azure
+- **--runtime**: Use `dotnet-isolated` for .NET 8 support.
+- **--functions-version**: Use Functions version `4` for .NET 8.
+- **--name**: Must be unique across Azure.
 
-Deploy your function app to Azure:
+## Deploying the Azure Functions
 
-```
-func azure functionapp publish MyFunctionApp
-```
+### Option 1: Deploy Using Visual Studio Code
 
-- Replace `MyFunctionApp` with the name of your Function App.
+#### Step 1: Open the Project in VS Code
 
-### 10. Test Your Deployed Function
+Open the folder containing `API1` and `API2` in VS Code.
 
-Get the URL of your Function App:
+#### Step 2: Install Azure Functions Extension
 
-```
-echo "https://$(az functionapp show --name MyFunctionApp --resource-group MyFunctionResourceGroup --query defaultHostName -o tsv)/api/ImageProcessorFunction"
-```
+Ensure the **Azure Functions** extension is installed in VS Code.
 
-Copy the URL and append your query parameters as needed. Test the function using `curl` or your browser.
+#### Step 3: Sign in to Azure
 
-## Additional Concepts
+In VS Code, click on the **Azure** icon on the sidebar and sign in to your Azure account.
 
-### Triggers and Bindings
+#### Step 4: Deploy Function App
 
-**Triggers** are what cause a function to run. **Bindings** are a way to interact with other services.
+For each function (`API1` and `API2`):
 
-Common triggers:
+- Right-click on the function project folder in the Explorer.
+- Select **Deploy to Function App...**.
+- Follow the prompts to select your subscription, Function App, and confirm deployment.
 
-- **HTTP Trigger**: Invoked via HTTP requests.
-- **Timer Trigger**: Runs on a schedule.
-- **Blob Trigger**: Runs when a blob is added or modified.
+### Option 2: Deploy Using the Azure CLI
 
-Common bindings:
+#### Step 1: Publish the Function
 
-- **Input Bindings**: Read data from sources (e.g., storage, databases).
-- **Output Bindings**: Write data to destinations.
+For each function (`API1` and `API2`), navigate to the project directory:
 
-### Scaling and Pricing
-
-Azure Functions scales automatically based on demand.
-
-- **Consumption Plan**: Scales dynamically, pay-per-use.
-- **Premium Plan**: Always-ready instances, predictable performance.
-- **Dedicated Plan**: Run functions within an App Service Plan.
-
-### Monitoring and Logging
-
-Use Azure Application Insights to monitor your functions.
-
-Enable Application Insights:
+For `API1`:
 
 ```
-az monitor app-insights component create --app MyFunctionAppInsights --location eastus --resource-group MyFunctionResourceGroup
+cd API1
 ```
 
-Configure your Function App to use it:
+Publish the function:
 
 ```
-az functionapp config appsettings set --name MyFunctionApp --resource-group MyFunctionResourceGroup --settings 
+func azure functionapp publish MyFunctionApp --csharp
+```
+
+Repeat the same steps for `API2`.
+
+#### Note on Project Files
+
+Ensure that the `.csproj` files in `API1` and `API2` target .NET 8:
+
+```
+<TargetFramework>net8.0</TargetFramework>
+```
+
+## Testing the Deployed Functions
+
+Retrieve the Function App's default hostname:
+
+```
+FUNCTION_APP_NAME=MyFunctionApp
+
+FUNCTION_HOST=$(az functionapp show --name $FUNCTION_APP_NAME --resource-group MyFunctionAppResourceGroup --query defaultHostName -o tsv)
+```
+
+### Test Function 1 (`API1`)
+
+Assuming your function name is `Function1`, construct the URL:
+
+```
+https://$FUNCTION_HOST/api/Function1
+```
+
+Test the function using `curl` or a web browser:
+
+```
+curl https://$FUNCTION_HOST/api/Function1
+```
+
+### Test Function 2 (`API2`)
+
+Similarly, for `Function2`:
+
+```
+https://$FUNCTION_HOST/api/Function2
+```
+
+Test using:
+
+```
+curl https://$FUNCTION_HOST/api/Function2
+```
+
+## Managing and Monitoring the Functions
+
+### Application Settings
+
+Adjust settings specific to your functions using the Azure CLI:
+
+```
+az functionapp config appsettings set --name MyFunctionApp --resource-group MyFunctionAppResourceGroup --settings "Key=Value"
+```
+
+### Monitoring with Application Insights
+
+Enable Application Insights to monitor your functions:
+
+#### Step 1: Create an Application Insights Resource
+
+```
+az monitor app-insights component create --app MyFunctionAppInsights --location eastus --resource-group MyFunctionAppResourceGroup
+```
+
+#### Step 2: Configure the Function App to Use Application Insights
+
+```
+INSTRUMENTATION_KEY=$(az monitor app-insights component show --app MyFunctionAppInsights --resource-group MyFunctionAppResourceGroup --query instrumentationKey -o tsv)
+
+az functionapp config appsettings set --name MyFunctionApp --resource-group MyFunctionAppResourceGroup --settings "APPINSIGHTS_INSTRUMENTATIONKEY=$INSTRUMENTATION_KEY" "APPLICATIONINSIGHTS_CONNECTION_STRING=InstrumentationKey=$INSTRUMENTATION_KEY"
+```
+
+You can now monitor your functions in the Azure Portal under Application Insights.
+
+### Scaling
+
+Azure Functions on the **Consumption Plan** automatically scale based on demand, with no additional configuration required.
+
+## Additional Notes
+
+- **Function Names**: The endpoint URLs correspond to the function names defined in your code.
+```- **Code Modifications**: If you make changes to your code, redeploy the functions using the steps above.
+- **Local Testing**: You can test your functions locally using Azure Functions Core Tools before deploying.
+- **Version Compatibility**: Ensure that your local environment and Azure Function App are both using .NET 8.
+
+## Additional Resources and References
+
+- **Azure Functions Documentation**: [Official Docs](https://learn.microsoft.com/azure/azure-functions/)
+- **Azure CLI Documentation**: [Azure CLI Docs](https://learn.microsoft.com/cli/azure/)
+- **Azure Functions Core Tools**: [Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
+- **Deploy Azure Functions**: [Deployment Strategies](https://learn.microsoft.com/azure/azure-functions/functions-deployment-technologies)
+- **Monitoring with Application Insights**: [Application Insights for Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-monitoring)
+
+## Conclusion
+
+By following this guide, you've successfully deployed Azure Functions using existing .NET 8 code. You now have serverless backend processes capable of handling tasks like image processing or data manipulation without the overhead of managing servers.
+
+Azure Functions provide a powerful and flexible way to build scalable applications. The serverless architecture allows you to focus on writing code, improving productivity and efficiency.
+
+Happy coding!
+
