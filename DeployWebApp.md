@@ -12,7 +12,7 @@ Before you begin, ensure you have the following:
 - **Basic Knowledge of Web Development**: HTML, CSS, and JavaScript.
 - **Web Application Code**: Your photo library frontend application.
 - **Azure CLI**: Install the Azure Command-Line Interface from [here](https://learn.microsoft.com/cli/azure/install-azure-cli) for managing Azure resources from your terminal.
-  - Alternatively, you can use the **Azure Portal** for a graphical interface.
+  - Alternatively, you can use the **Azure Portal** for a graphical interface [here](https://portal.azure.com).
 
 ## Understanding Azure Concepts
 
@@ -191,9 +191,9 @@ Bind a custom domain to your web app and enable SSL:
 ## Continuous Deployment
 Automate your deployments:
 
-- **GitHub Actions**: [Set up CI/CD with GitHub Actions]https://learn.microsoft.com/azure/app-service/deploy-github-actions
+- **GitHub Actions**: [Set up CI/CD with GitHub Actions](https://learn.microsoft.com/azure/app-service/deploy-github-actions)
 - **Azure DevOps**: [Use Azure Pipelines](https://learn.microsoft.com/azure/devops/pipelines/get-started/azure-devops-pipeline)
--- [Learn more] (https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview)
+    - [Learn more](https://learn.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview)
 
 ## Security
 - Application Settings: Store sensitive data in environment variables.
