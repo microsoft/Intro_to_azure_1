@@ -1,0 +1,36 @@
+# Custom workflow
+
+name: Deploy API2 to Azure Container App
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: 
+      - "Node/API2/**"  
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@v3
+
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.BU2024519ACASP }}
+
+    - name: Build and deploy Container App
+      uses: azure/container-apps-deploy-action@v1
+      with:
+        appSourcePath: ${{ github.workspace}}/Node/API2
+        acrName: newfoobarnvm
+        containerAppName: nvmcs519api2
+        resourceGroup: bu2024519
+        environmentVariables: AzureWebJobsQueueConnectionString=secretref:queue-connection-string AzureWebJobsStorage=secretref:storage-account secret3=secretref:secret3
+
+    - name: Azure logout
+      run: |
+        az logout

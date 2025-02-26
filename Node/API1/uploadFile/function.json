@@ -1,0 +1,35 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "route": "uploadFile/{filename}",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "name": "OutputBlob",
+      "type": "blob",
+      "path": "images/{filename}",
+      "connection": "blobStorageConnectionSetting",
+      "direction": "out"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "myQueueItem",
+      "queueName": "myqueue",
+      "connection": "QueueConnectionString"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+  ],
+  "scriptFile": "../dist/uploadFile/index.js"
+}

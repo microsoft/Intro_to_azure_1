@@ -1,0 +1,8 @@
+{
+    "azureFunctions.deploySubpath": "dotnet8/API1/bin/Release/net8.0/publish",
+    "azureFunctions.projectLanguage": "C#",
+    "azureFunctions.projectRuntime": "~4",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.projectSubpath": "dotnet8/API1",
+    "azureFunctions.preDeployTask": "publish (functions)"
+}

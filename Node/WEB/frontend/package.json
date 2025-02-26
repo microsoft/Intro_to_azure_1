@@ -1,0 +1,47 @@
+{
+  "name": "assignment1",
+  "version": "0.1.0",
+  "private": false,
+  "dependencies": {
+    "@azure/core-auth": "^1.7.1",
+    "@azure/identity": "^4.0.1",
+    "@azure/storage-queue": "^12.16.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.19.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  },
+  "scripts": {
+    "prestart": "tsc",
+    "prebuild": "tsc",
+    "start": "PORT=3001 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+.image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 150px;
+    width: 100%;
+}
+
+.imageBox {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.imageBox img {
+    width: 100px;
+    height: 100px;
+}
+
+.imageName {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 2px;
+    margin-bottom: 0px;
+}
+
+.imageInfo {
+    font-size: 15px;
+    text-align: center;
+    padding-top: 0px;
+    margin-top: 0px;
+    word-wrap:break-word;
+}
