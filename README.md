@@ -10,7 +10,7 @@ This project is your hands-on guide to building a full-fledged photo library usi
 
 ![image](https://github.com/user-attachments/assets/29f6a1eb-f61b-41da-97c6-73c1d214f8f1)
 
-### What's Inside?
+## What's Inside?
 By working through this project, you'll learn how to:
 
 - **Secure Your GitHub Repository and Automate Deployments to Azure**  [link](./SecureTheRepo.md)
