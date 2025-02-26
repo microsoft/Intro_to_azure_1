@@ -9,7 +9,7 @@ This project is your hands-on guide to building a full-fledged photo library usi
 ### What's Inside?
 By working through this project, you'll learn how to:
 
-- **Secure Your GitHub Repository and Automate Deployments to Azure**
+- **Secure Your GitHub Repository and Automate Deployments to Azure**  [link](https://github.com/microsoft/Intro_to_azure_1/blob/main/SecureTheRepo.md)
   - Set up continuous integration and deployment (CI/CD) so updates are automatically deployed whenever you push changes.
   - Implement security best practices to protect your code and deployment pipeline.
 
@@ -144,7 +144,7 @@ For those new to Azure or certain cloud concepts, here's a breakdown:
 - [Azure Functions Guide](https://docs.microsoft.com/en-us/azure/azure-functions/)
 - [Learning Paths](https://docs.microsoft.com/en-us/learn/paths/)
 - [Azure Fundamentals](https://docs.microsoft.com/en-us/learn/paths/azure-fundamentals/)
-- [Community Support](https://docs.microsoft.com/en-us/azure/azure-support/)
+- [Community Support](https://learn.microsoft.com/en-us/azure/azure-portal/supportability/how-to-create-azure-support-request/)
 
 
 Join the Azure Community for discussions and assistance.
