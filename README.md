@@ -6,6 +6,10 @@ Welcome to the Intro to Azure repository!
 
 This project is your hands-on guide to building a full-fledged photo library using Microsoft Azure. Whether you're new to Azure or looking to deepen your understanding, this project walks you through deploying and connecting various Azure services to create a seamless application.
 
+## Architecture
+
+![image](https://github.com/user-attachments/assets/29f6a1eb-f61b-41da-97c6-73c1d214f8f1)
+
 ### What's Inside?
 By working through this project, you'll learn how to:
 
@@ -47,6 +51,8 @@ By working through this project, you'll learn how to:
 - **Managed Identity**
   - Securely connect Azure services without hardcoding credentials.
   - Simplify authentication across your resources using Azure Active Directory (AD).
+ 
+##
 
 ## Getting Started
 
