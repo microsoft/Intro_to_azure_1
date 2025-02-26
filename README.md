@@ -17,7 +17,7 @@ By working through this project, you'll learn how to:
   - Host your photo library frontend using Azure App Service.
   - Learn how to scale and manage your web application in the cloud.
 
-- **Deploy an Azure Function**
+- **Deploy an Azure Function** [link](./functions.md)
   - Create serverless backend processes with Azure Functions.
   - Handle tasks like image processing or data manipulation without managing servers.
 
