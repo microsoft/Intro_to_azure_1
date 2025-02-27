@@ -20,10 +20,12 @@ By working through this project, you'll learn how to:
 - **Deploy an Azure Web App** [link](./DeployWebApp.md)
   - Host your photo library frontend using Azure App Service.
   - Learn how to scale and manage your web application in the cloud.
+  - [intro to App Service](./intro-to-appservice.md)
 
 - **Deploy an Azure Function** [link](./functions.md)
   - Create serverless backend processes with Azure Functions.
   - Handle tasks like image processing or data manipulation without managing servers.
+  - [Intro to Azure Functions](./intro-to-functions.md)
 
 - **Set Up Infrastructure as Code (IaC) Pipelines** [link](./iac.md)
   - Automate the deployment of Azure resources using tools like Azure Resource Manager (ARM) templates or Terraform.
