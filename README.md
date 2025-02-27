@@ -98,6 +98,12 @@ By working through this project, you'll learn how to:
     - Assign managed identities to your services.
     - Eliminate the need for storing secrets in your configuration.
 
+## Building the solution
+1. Day 1  [Link](./day1.md)
+    - Build the web app in Codespaces
+    - Create an Web App
+    - Create a Github Action to deploy your app to Azure
+
 ## Understanding Key Concepts
 
 For those new to Azure or certain cloud concepts, here's a breakdown:
