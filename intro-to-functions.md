@@ -199,7 +199,7 @@ Azure Functions provides several hosting plans to match your application's requi
 - **Azure Functions Documentation**:
   - [Azure Functions Overview](https://docs.microsoft.com/azure/azure-functions/functions-overview)
 - **Getting Started with Azure Functions**:
-  - [Create your first function](https://docs.microsoft.com/azure/azure-functions/functions-create-first-function)
+  - [Create your first function](https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-function-app-portal)
 - **Durable Functions**:
   - [Durable Functions Overview](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-overview)
 - **Azure Functions Hosting Options**:
