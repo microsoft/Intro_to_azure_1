@@ -69,7 +69,7 @@ Once your Codespace is running, you'll need to navigate to your web application'
    Open the terminal in Codespaces and run:
 
    ```
-   cd c_sharp/dotnet8/web
+   cd C_Sharp/dotnet8/WEB
    ```
 
    This command changes the current directory to where your web application code is located.
@@ -79,7 +79,7 @@ Once your Codespace is running, you'll need to navigate to your web application'
    Ensure that the .NET version installed is **.NET 8**:
 
    ```
-   dotnet --version
+   dotnet --list-sdks
    ```
 
    You should see output similar to:
@@ -235,9 +235,12 @@ The publish profile contains the credentials and settings needed to deploy your 
        If your application is not in the repository root, specify the working directory:
 
        ```
-       defaults:
-         run:
-           working-directory: c_sharp/dotnet8/web
+            on:
+            push:
+                branches: [ "main" ]
+                paths: 
+                - "C_Sharp/dotnet8/WEB/**"  
+            workflow_dispatch:
        ```
 
 4. **Commit the Workflow**:
