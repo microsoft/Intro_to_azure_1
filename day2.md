@@ -63,9 +63,9 @@ Once Codespaces is running, open the terminal within Codespaces.
 
 - Change to the `API1` project directory:
 
-  [[[bash
+  ```bash
   cd C_Sharp/dotnet8/API1
-  ]]]
+  ```
 
 ### 1.3 Install Azure Tools Extensions
 
@@ -96,9 +96,9 @@ The **Azure Functions Core Tools** allow you to run and debug Azure Functions lo
 
 - **Alternatively, install using npm:**
 
-  [[[bash
+  ```bash
   npm install -g azure-functions-core-tools@4 --unsafe-perm true
-  ]]]
+  ```
 
 **References:**
 
@@ -117,9 +117,9 @@ Now that your environment is set up, let's run the Azure Function locally.
   - Ensure you're in the `C_Sharp/dotnet8/API1` directory.
   - Run the following command in the terminal:
 
-    [[[bash
+    ```bash
     func start
-    ]]]
+    ```
 
   This command builds and runs your Azure Function locally.
 
@@ -176,27 +176,27 @@ _NOTE: The free tier for Azure Functions is Y1
     - Open the terminal.
     - Create a Resource Group (if not already created):
 
-      [[[bash
+      ```bash
       az group create --name <ResourceGroupName> --location <Location>
-      ]]]
+      ```
 
     - Create a Storage Account:
 
-      [[[bash
+      ```bash
       az storage account create --name <StorageAccountName> --location <Location> --resource-group <ResourceGroupName> --sku Standard_LRS
-      ]]]
+      ```
 
     - Create an App Service Plan:
 
-      [[[bash
+      ```bash
       az appservice plan create --name <AppServicePlanName> --resource-group <ResourceGroupName> --sku F1 --is-linux
-      ]]]
+      ```
 
     - Create the Function App:
 
-      [[[bash
+      ```bash
       az functionapp create --resource-group <ResourceGroupName> --consumption-plan-location <Location> --runtime dotnet-isolated --functions-version 4 --name <FunctionAppName> --storage-account <StorageAccountName>
-      ]]]
+      ```
 
   - **Using Azure Portal:**
 
@@ -238,20 +238,20 @@ Now, let's automate the deployment process using GitHub Actions.
 
     Ensure the workflow operates in the correct directory.
 
-    [[[yaml
+    ```yaml
     defaults:
       run:
         working-directory: C_Sharp/dotnet8/API1
-    ]]]
+    ```
 
   - **Trigger the Workflow Only on Changes to `API1`:**
 
-    [[[yaml
+    ```yaml
     on:
       push:
         paths:
           - 'C_Sharp/dotnet8/API1/**'
-    ]]]
+    ```
 
 - **Create a Service Principal for Deployment**
 
@@ -259,9 +259,9 @@ Now, let's automate the deployment process using GitHub Actions.
 
   - **Create Service Principal Using Azure CLI:**
 
-    [[[bash
+    ```bash
     az ad sp create-for-rbac --name "<ServicePrincipalName>" --role contributor --scopes /subscriptions/<SubscriptionID>/resourceGroups/<ResourceGroupName> --sdk-auth
-    ]]]
+    ```
 
     - Replace `<ServicePrincipalName>`, `<SubscriptionID>`, and `<ResourceGroupName>` with your values.
     - This command outputs a JSON object containing:
@@ -289,18 +289,18 @@ Now, let's automate the deployment process using GitHub Actions.
 
   Add the Azure Login action using the service principal credentials.
 
-  [[[yaml
+  ```yaml
   - name: 'Login via Azure CLI'
     uses: azure/login@v1
     with:
       creds: ${{ secrets.AZURE_CREDENTIALS }}
-  ]]]
+  ```
 
 - **Deploy the Function:**
 
   Complete the workflow with steps to build and deploy the function.
 
-  [[[yaml
+  ```yaml
   - name: 'Set up .NET Core SDK'
     uses: actions/setup-dotnet@v3
     with:
@@ -320,7 +320,7 @@ Now, let's automate the deployment process using GitHub Actions.
     with:
       app-name: <FunctionAppName>
       package: ./publish_output
-  ]]]
+  ```
 
   - Replace `<FunctionAppName>` with the name of your Azure Function App.
 
@@ -344,17 +344,17 @@ Now, we'll set up **API2**, and the key difference is that we'll deploy it as an
 
 - In the terminal, change to the `API2` project directory:
 
-  [[[bash
+  ```bash
   cd C_Sharp/dotnet8/API2
-  ]]]
+  ```
 
 ### 4.2 Test the Function Locally
 
 - **Run the Function:**
 
-  [[[bash
+  ```bash
   func start
-  ]]]
+  ```
 
 - **Note:** The function is boilerplate code, so it may not have specific functionality yet.
 
@@ -362,9 +362,9 @@ Now, we'll set up **API2**, and the key difference is that we'll deploy it as an
 
 - **Create a Dockerfile for the Function:**
 
-  [[[bash
+  ```bash
   func init . --docker-only
-  ]]]
+  ```
 
   This command generates a `Dockerfile` in your `API2` directory, which is necessary for containerization.
 
@@ -384,23 +384,23 @@ An Azure Container Registry stores and manages private Docker container images.
 
   - **Create Resource Group (if not already created):**
 
-    [[[bash
+    ```bash
     az group create --name <ResourceGroupName> --location <Location>
-    ]]]
+    ```
 
   - **Create ACR:**
 
-    [[[bash
+    ```bash
     az acr create --resource-group <ResourceGroupName> --name <RegistryName> --sku Basic
-    ]]]
+    ```
 
     - Replace `<RegistryName>` with a unique name (must be lowercase and between 5-50 characters).
 
 - **Log in to ACR:**
 
-  [[[bash
+  ```bash
   az acr login --name <RegistryName>
-  ]]]
+  ```
 
 **Reference:**
 
@@ -412,36 +412,36 @@ An Azure Container Registry stores and manages private Docker container images.
 
   - Create a simple `Dockerfile` if not already available.
 
-    [[[dockerfile
+    ```dockerfile
     FROM mcr.microsoft.com/dotnet/runtime:6.0
     CMD ["echo", "Hello, World!"]
-    ]]]
+    ```
 
   - Build the image:
 
-    [[[bash
+    ```bash
     docker build -t <RegistryName>.azurecr.io/hello-world:latest .
-    ]]]
+    ```
 
 - **Push the Image to ACR:**
 
-  [[[bash
+  ```bash
   docker push <RegistryName>.azurecr.io/hello-world:latest
-  ]]]
+  ```
 
 ### 4.7 Update ACR Settings to Allow Login
 
 - **Enable Admin User:**
 
-  [[[bash
+  ```bash
   az acr update -n <RegistryName> --admin-enabled true
-  ]]]
+  ```
 
 - **Retrieve Credentials:**
 
-  [[[bash
+  ```bash
   az acr credential show --name <RegistryName>
-  ]]]
+  ```
 
 - **Add Credentials to GitHub Secrets:**
 
@@ -452,20 +452,20 @@ An Azure Container Registry stores and manages private Docker container images.
 
 - **Create a Container App Environment:**
 
-  [[[bash
+  ```bash
   az containerapp env create --name <EnvironmentName> --resource-group <ResourceGroupName> --location <Location>
-  ]]]
+  ```
 
 - **Deploy the Dummy Image to the Container App:**
 
-  [[[bash
+  ```bash
   az containerapp create --name <ContainerAppName> \
     --resource-group <ResourceGroupName> \
     --environment <EnvironmentName> \
     --image <RegistryName>.azurecr.io/hello-world:latest \
     --target-port 80 \
     --ingress 'external'
-  ]]]
+  ```
 
 **References:**
 
@@ -487,7 +487,7 @@ An Azure Container Registry stores and manages private Docker container images.
 
 - **Set the Working Directory and Trigger Path:**
 
-  [[[yaml
+  ```yaml
   defaults:
     run:
       working-directory: C_Sharp/dotnet8/API2
@@ -496,31 +496,31 @@ An Azure Container Registry stores and manages private Docker container images.
     push:
       paths:
         - 'C_Sharp/dotnet8/API2/**'
-  ]]]
+  ```
 
 - **Add Steps to Login and Checkout Repo:**
 
   - **Login to Azure:**
 
-    [[[yaml
+    ```yaml
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    ]]]
+    ```
 
   - **Checkout the Repository:**
 
-    [[[yaml
+    ```yaml
     - name: 'Checkout code'
       uses: actions/checkout@v3
-    ]]]
+    ```
 
 - **Build and Push Docker Image:**
 
   - **Use Docker Build-Push Action:**
 
-    [[[yaml
+    ```yaml
     - name: 'Set up Docker Buildx'
       uses: docker/setup-buildx-action@v2
 
@@ -537,13 +537,13 @@ An Azure Container Registry stores and manages private Docker container images.
         context: .
         push: true
         tags: ${{ secrets.REGISTRY_NAME }}.azurecr.io/api2:latest
-    ]]]
+    ```
 
 - **Deploy to Azure Container App:**
 
   - **Deploy Using Azure CLI:**
 
-    [[[yaml
+    ```yaml
     - name: 'Deploy to Azure Container App'
       uses: azure/CLI@v1
       with:
@@ -551,13 +551,13 @@ An Azure Container Registry stores and manages private Docker container images.
           az containerapp update --name <ContainerAppName> \
             --resource-group <ResourceGroupName> \
             --image ${{ secrets.REGISTRY_NAME }}.azurecr.io/api2:latest
-    ]]]
+    ```
   
     - Replace `<ContainerAppName>` and `<ResourceGroupName>` with your specific values.
 
 - **Complete Workflow Example:**
 
-  [[[yaml
+  ```yaml
   name: Build and Deploy API2
 
   defaults:
@@ -605,7 +605,7 @@ An Azure Container Registry stores and manages private Docker container images.
               az containerapp update --name <ContainerAppName> \
                 --resource-group <ResourceGroupName> \
                 --image ${{ secrets.REGISTRY_NAME }}.azurecr.io/api2:latest
-  ]]]
+  ```
 
 ### 5.3 Commit and Push the Workflow
 
