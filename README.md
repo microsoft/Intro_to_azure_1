@@ -104,6 +104,15 @@ By working through this project, you'll learn how to:
     - Create an Web App
     - Create a Github Action to deploy your app to Azure
 
+2. Day 2 [Link](./day2.md)
+    - Build API1 in codespaces
+    - Create an Azure Function
+    - Test Deploy manually
+    - Create a Github Action to deploy your azure function
+    - Build API2 in codespaces
+    - Create an Azure Function, Azure Container Registry, Azure Container App
+    - Create a Github Aciton to deploy the Azure Function as a container 
+
 ## Understanding Key Concepts
 
 For those new to Azure or certain cloud concepts, here's a breakdown:
