@@ -37,6 +37,7 @@ Before you begin, ensure you have the following:
 6. [Setting Up GitHub Actions Deployment](#6-setting-up-github-actions-deployment)
 7. [Triggering a Deployment](#7-triggering-a-deployment)
 8. [References](#8-references)
+9. [FAQ](#9-FAQ)
 
 ---
 
@@ -288,7 +289,7 @@ With the GitHub Action configured, any push to the specified branch will trigger
 
 ---
 
-## FAQ
+## 9. FAQ
 
 *Development Environment and Tools*
 
