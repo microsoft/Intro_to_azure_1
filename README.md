@@ -73,10 +73,10 @@ By working through this project, you'll learn how to:
 
 ## Clone the Repository
 
-    ```bash
-    git clone https://github.com/yourusername/intro-to-azure-1.git
-    cd intro-to-azure-1
-    ```
+```bash
+git clone https://github.com/yourusername/intro-to-azure-1.git
+cd intro-to-azure-1
+```
 
 ## Building the solution
 1. Day 1  [Link](./day1.md)
@@ -95,7 +95,7 @@ By working through this project, you'll learn how to:
 
 ## Understanding Key Concepts
 
-For those new to Azure or certain cloud concepts, Embarking on this journey isn't just about learning cloud services; it's about transforming the way you think about engineering solutions. You're automating the mundane to focus on innovation, turning infrastructure into agile code, and deploying applications
+For those new to Azure or certain cloud concepts, embarking on this journey isn't just about learning cloud services; it's about transforming the way you think about engineering solutions. You're automating the mundane to focus on innovation, turning infrastructure into agile code, and deploying applications
 
 ### Continuous Integration and Deployment (CI/CD)
 
@@ -160,7 +160,7 @@ Picture having a personal assistant who shows up only when needed, does the work
 
 - **Automation and Efficiency:** Reduce manual errors and save time by automating infrastructure setups and updates.
 
-Think of Infrastructure as Code (IaC) as having a blueprint for your dream house—you can rebuild it anywhere, anytime, exactly the same, simply by following the blueprint. In the software development context, IaC helps you define and manage your cloud resources in a machine-readable format, allowing you to provision environments consistently without extensive manual intervention. From a cost optimization perspective, you avoid overprovisioning and pay only for the resources you specify, while performance is improved by automating repeatable deployments that quickly scale to meet demand. Security benefits arise from using version-controlled templates and standard configurations, which reduce the risk of misconfigurations and vulnerabilities. Operations become more streamlined as IaC lets you track changes, roll back easily, and rapidly spin up or tear down environments. Ultimately, the goal of IaC is to treat your infrastructure just like application code—fully automated, consistently repeatable, and tightly integrated into your development lifecycle to help you build, deploy, and maintain software more efficiently.
+Think of Infrastructure as Code (IaC) as having a blueprint for the resources your application uses. You can rebuild anywhere, anytime, exactly the same, simply by following the blueprint. IaC helps you define and manage your cloud resources in a machine-readable format, allowing you to provision environments consistently without extensive manual intervention. Velocity is improved by automating repeatable deployments that quickly scale to meet demand. Security benefits arise from using version-controlled templates and standard configurations, which reduce the risk of misconfigurations and vulnerabilities. Operations become more streamlined as IaC lets you track changes, roll back easily, and rapidly spin up or tear down environments. Ultimately, the goal of IaC is to treat your infrastructure just like application code—fully automated, consistently repeatable, and tightly integrated into your development lifecycle to help you build, deploy, and maintain software more efficiently.
 
 ### Managed Identity
 
